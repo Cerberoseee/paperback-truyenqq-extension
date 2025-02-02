@@ -1470,10 +1470,10 @@ var _Sources = (() => {
   var entities = require_lib2();
   var parseSearch = ($2) => {
     const mangas = [];
-    for (let manga of $2("li", ".list-stories").toArray()) {
-      let title = $2(`h3.title-book > a`, manga).text().trim();
-      let subtitle = $2(`.episode-book > a`, manga).text().trim();
-      let image = $2(`a > img`, manga).attr("src") ?? "";
+    for (let manga of $2(".list_grid li").toArray()) {
+      let title = $2(`.book_name h3`, manga).text().trim();
+      let subtitle = $2(`.last_chapter`, manga).text().trim();
+      let image = $2(`.book_avatar img`, manga).attr("src") ?? "";
       let id = $2(`a`, manga).attr("href")?.split("/").pop() ?? title;
       if (!id || !title) continue;
       mangas.push(App.createPartialSourceManga({
@@ -1488,11 +1488,11 @@ var _Sources = (() => {
   var parseViewMore = ($2) => {
     const manga = [];
     const collectedIds = [];
-    for (let obj of $2("li", ".list-stories").toArray()) {
-      let title = $2(`h3.title-book > a`, obj).text().trim();
-      let subtitle = $2(`.episode-book > a`, obj).text().trim();
-      let image = $2(`a > img`, obj).attr("src") ?? "";
-      let id = $2(`a`, obj).attr("href")?.split("/").pop() ?? title;
+    for (let obj of $2(".list_grid li").toArray()) {
+      let title = $2(`.book_name h3`, obj).text().trim();
+      let subtitle = $2(`.last_chapter`, obj).text().trim();
+      let image = $2(`.book_avatar img`, obj).attr("src") ?? "";
+      let id = $2(`a`, manga).attr("href")?.split("/").pop() ?? title;
       if (!id || !title) continue;
       if (!collectedIds.includes(id)) {
         manga.push(App.createPartialSourceManga({
