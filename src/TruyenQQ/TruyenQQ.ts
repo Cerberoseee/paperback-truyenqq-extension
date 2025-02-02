@@ -85,21 +85,21 @@ export class TruyenQQ implements ChapterProviding, SearchResultsProviding, HomeP
       const id = $(t).attr("href") ?? genre;
       tags.push(App.createTag({ label: genre, id }));
     }
-    for (const c of $("a", ".txt > p:nth-of-type(1)").toArray()) {
+    for (const c of $("a", ".org > p:nth-of-type(1)").toArray()) {
       const name = $(c).text().trim();
       creator.push(name);
     }
-    status = $(".txt > p:nth-of-type(2)")
+    status = $(".org > p:nth-of-type(2)")
       .text()
 
-    const image = $(".book_detail .book_avatar > img").attr("src") ?? "";
+    const image = $(".book_info img").attr("src") ?? "";
     return App.createSourceManga({
       id: mangaId,
       mangaInfo: App.createMangaInfo({
         author: creator.join(", "),
         artist: creator.join(", "),
         desc: desc === "" ? "Không có mô tả" : desc,
-        titles: [$(".center > h1").text().trim()],
+        titles: [$(".book_info h1").text().trim()],
         image,
         status,
         rating: parseFloat($('span[itemprop="ratingValue"]').text()),
