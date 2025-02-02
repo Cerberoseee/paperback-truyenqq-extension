@@ -92,7 +92,7 @@ export class TruyenQQ implements ChapterProviding, SearchResultsProviding, HomeP
     status = $(".txt > p:nth-of-type(2)")
       .text()
 
-    const image = $(".left > img").attr("src") ?? "";
+    const image = $(".book_detail .book_avatar > img").attr("src") ?? "";
     return App.createSourceManga({
       id: mangaId,
       mangaInfo: App.createMangaInfo({
@@ -100,7 +100,7 @@ export class TruyenQQ implements ChapterProviding, SearchResultsProviding, HomeP
         artist: creator.join(", "),
         desc: desc === "" ? "Không có mô tả" : desc,
         titles: [$(".center > h1").text().trim()],
-        image: image,
+        image,
         status,
         rating: parseFloat($('span[itemprop="ratingValue"]').text()),
         hentai: false,
