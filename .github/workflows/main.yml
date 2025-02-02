@@ -28,9 +28,7 @@ jobs:
       - run: npm run bundle
 
       - name: Deploy
-        uses: s0/git-publish-subdir-action@master
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         env:
-          REPO: self
           BRANCH: gh-pages
           FOLDER: bundles
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
