@@ -44,10 +44,10 @@ export const generateSearch = (query: SearchRequest): string => {
 
 export const parseSearch = ($: any): PartialSourceManga[] => {
   const mangas: PartialSourceManga[] = [];
-  for (let manga of $('li', '.list-stories').toArray()) {
-    let title = $(`h3.title-book > a`, manga).text().trim();
-    let subtitle = $(`.episode-book > a`, manga).text().trim();
-    let image = $(`a > img`, manga).attr("src") ?? "";
+  for (let manga of $('.list_grid li').toArray()) {
+    let title = $(`.book_name h3`, manga).text().trim();
+    let subtitle = $(`.last_chapter`, manga).text().trim();
+    let image = $(`.book_avatar img`, manga).attr("src") ?? "";
     let id = $(`a`, manga).attr("href")?.split("/").pop() ?? title;
     if (!id || !title) continue;
     mangas.push(App.createPartialSourceManga({
@@ -63,11 +63,11 @@ export const parseSearch = ($: any): PartialSourceManga[] => {
 export const parseViewMore = ($: any): PartialSourceManga[] => {
   const manga: PartialSourceManga[] = [];
   const collectedIds: string[] = [];
-  for (let obj of $('li', '.list-stories').toArray()) {
-    let title = $(`h3.title-book > a`, obj).text().trim();
-    let subtitle = $(`.episode-book > a`, obj).text().trim();
-    let image = $(`a > img`, obj).attr("src") ?? "";
-    let id = $(`a`, obj).attr("href")?.split("/").pop() ?? title;
+  for (let obj of $('.list_grid li').toArray()) {
+    let title = $(`.book_name h3`, obj).text().trim();
+    let subtitle = $(`.last_chapter`, obj).text().trim();
+    let image = $(`.book_avatar img`, obj).attr("src") ?? "";
+    let id = $(`a`, manga).attr("href")?.split("/").pop() ?? title;
     if (!id || !title) continue;
     if (!collectedIds.includes(id)) {
       manga.push(App.createPartialSourceManga({
