@@ -15295,7 +15295,7 @@ var _Sources = (() => {
         creator.push(name);
       }
       status = $2(".txt > p:nth-of-type(2)").text();
-      const image = $2(".left > img").attr("src") ?? "";
+      const image = $2(".book_detail .book_avatar > img").attr("src") ?? "";
       return App.createSourceManga({
         id: mangaId,
         mangaInfo: App.createMangaInfo({
