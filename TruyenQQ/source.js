@@ -15290,19 +15290,19 @@ var _Sources = (() => {
         const id = $2(t).attr("href") ?? genre;
         tags.push(App.createTag({ label: genre, id }));
       }
-      for (const c of $2("a", ".txt > p:nth-of-type(1)").toArray()) {
+      for (const c of $2("a", ".org > p:nth-of-type(1)").toArray()) {
         const name = $2(c).text().trim();
         creator.push(name);
       }
-      status = $2(".txt > p:nth-of-type(2)").text();
-      const image = $2(".book_detail .book_avatar > img").attr("src") ?? "";
+      status = $2(".org > p:nth-of-type(2)").text();
+      const image = $2(".book_info img").attr("src") ?? "";
       return App.createSourceManga({
         id: mangaId,
         mangaInfo: App.createMangaInfo({
           author: creator.join(", "),
           artist: creator.join(", "),
           desc: desc === "" ? "Kh\xF4ng c\xF3 m\xF4 t\u1EA3" : desc,
-          titles: [$2(".center > h1").text().trim()],
+          titles: [$2(".book_info h1").text().trim()],
           image,
           status,
           rating: parseFloat($2('span[itemprop="ratingValue"]').text()),
